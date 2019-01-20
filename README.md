@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nanfuka/ireporters-apis.svg?branch=challenge2)](https://travis-ci.org/nanfuka/ireporters-apis)
+[![Build Status](https://travis-ci.org/nanfuka/ireporters-apis.svg?branch=challenge2)](https://travis-ci.org/nanfuka/ireporters-apis)[![Maintainability](https://api.codeclimate.com/v1/badges/1bbe806fc2f2feba08ab/maintainability)](https://codeclimate.com/github/nanfuka/ireporters-apis/maintainability)
 # i-reporter
 
 # description

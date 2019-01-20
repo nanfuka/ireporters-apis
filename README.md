@@ -12,7 +12,7 @@ I-reporter is the localised solution to the corruption problem in Africa. With t
 - Delete a ​red-flag​​ record
 
 ## heroku
-The app is hosted on heroku at [ireporter-api](https://reportth.herokuapp.com/)
+The app is hosted on heroku at [ireporter-api](https://ireps.herokuapp.com/)
 
 ## gh-pages 
 - Go to [I-reporter](https://nanfuka.github.io/iReporter/)

@@ -49,7 +49,7 @@ def signup():
         return jsonify({"status": 400, 'error': validate_boolean}), 400
     validate_password = validators.validate_password(password)
     if validate_password:
-        return jsonify({"status": 400, 'error': validate_boolean}), 400
+        return jsonify({"status": 400, 'error': validate_password}), 400
         
     invalid_detail = user.check_repitition(username, email, password)
     if invalid_detail:

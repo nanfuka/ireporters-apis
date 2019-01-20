@@ -5,25 +5,25 @@ class BaseTestCase(unittest.TestCase):
 
     def setUp(self):
         self.test_client = app.test_client()
-        self.users = {
-                    "firstname": "debrah",
-                     "lastname": "kalungi",
-                     "othernames": "Nsubuga",
-                     "email": "kalungi2k6@yahoo.com",
-                     "PhoneNumber": 777777,
-                     "username": "nanfuka",
-                     "isAdmin": "true",
-                     "password": "secrets"
-                     }, {
-                     "firstname": "debrah",
-                     "lastname": "kalungi",
-                     "othernames": "Nsubuga",
-                     "email": "kalungji2k6@yahoo.com",
-                     "PhoneNumber": 777777,
-                     "username": "nanjfuka",
-                     "isAdmin": "true",
-                     "password": "sejhcrets"
-                     }
+        self.users ={"firstname": "deb",
+                     "lastname":"kalun",
+                     "othernames":"mercy",
+                     "email":"kal@yahoo.com",
+                     "phoneNumber":1111111111,
+                     "username":"jhku",
+                    "isAdmin":"true",
+                    "password":"secretsh"
+        }
+                    #  ,{
+                    #  "firstname": "debrah",
+                    #  "lastname": "kalungi",
+                    #  "othernames": "Nsubuga",
+                    #  "email": "kalungji2k6@yahoo.com",
+                    #  "PhoneNumber": 777777,
+                    #  "username": "nanjfuka",
+                    #  "isAdmin": "true",
+                    #  "password": "sejhcrets"
+                    #  }
            
         self.report = {"createdby": 2,
 

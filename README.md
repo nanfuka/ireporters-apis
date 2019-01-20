@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/nanfuka/ireporters-apis.svg?branch=challenge2)](https://travis-ci.org/nanfuka/ireporters-apis)[![Coverage Status](https://coveralls.io/repos/github/nanfuka/ireporters-apis/badge.svg?branch=163268147-delete-redflag)](https://coveralls.io/github/nanfuka/ireporters-apis?branch=163268147-delete-redflag)[![Maintainability](https://api.codeclimate.com/v1/badges/1bbe806fc2f2feba08ab/maintainability)](https://codeclimate.com/github/nanfuka/ireporters-apis/maintainability)
 # i-reporter
 
 # description
@@ -11,7 +12,7 @@ I-reporter is the localised solution to the corruption problem in Africa. With t
 - Delete a ​red-flag​​ record
 
 ## heroku
-The app is hosted on heroku at [ireporter-api](https://reportth.herokuapp.com/)
+The app is hosted on heroku at [ireporter-api](https://ireps.herokuapp.com/)
 
 ## gh-pages 
 - Go to [I-reporter](https://nanfuka.github.io/iReporter/)

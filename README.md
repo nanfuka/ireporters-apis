@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/nanfuka/ireporters-apis.svg?branch=challenge2)](https://travis-ci.org/nanfuka/ireporters-apis)
 # i-reporter
 
 # description

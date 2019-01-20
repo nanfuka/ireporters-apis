@@ -326,30 +326,30 @@ class TestIncidents(BaseTestCase):
                   "comment": "this is over recurring",
                   "incident_type": "redflag"
                   }
-        response = self.test_client.post('/api/v1/red-flags', json=report)
+        response = self.test_client.post('/api/v1/red-flags', json=self.report)
 
         response = self.test_client.get('/api/v1/red-flags/1')
         data = json.loads(response.data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data['status'], 200)
         # self.assertEqual(data['data'][0], {
-        #     "comment": "this is over recurring",
-        #     "createdby": 2,
-        #     "createdon": datetime.datetime.now(),
-        #     "images": "imagelocation",
-        #     "incident_type": "redflag",
-        #     "location": "22.98 33.23",
-        #     "redflag_id": 1,
-        #     "status": "draft",
-        #     "videos": "videolocation"
-        # })
-        # self.assertEqual(data['data']['createdby'], 2)
-        # self.assertEqual(data['data']['images'], "imagelocation")
-        # self.assertEqual(data['data']['incident_type'], "redflag")
-        # self.assertEqual(data['data']['location'], "22.33 44.56")
-        # self.assertEqual(data['data']['redflag_id'], 1)
-        # self.assertEqual(data['data']['status'], "draft")
-        # self.assertEqual(data['data']['videos'], "videolocation")
+        #     "comment": "this is over recurring"})
+        # #     "createdby": 2,
+        # #     "createdon": datetime.datetime.now(),
+        # #     "images": "imagelocation",
+        # #     "incident_type": "redflag",
+        # #     "location": "22.98 33.23",
+        # #     "redflag_id": 1,
+        # #     "status": "draft",
+        # #     "videos": "videolocation"
+        # # })
+        # # self.assertEqual(data['data']['createdby'], 2)
+        # # self.assertEqual(data['data']['images'], "imagelocation")
+        # # self.assertEqual(data['data']['incident_type'], "redflag")
+        # # self.assertEqual(data['data']['location'], "22.33 44.56")
+        # # self.assertEqual(data['data']['redflag_id'], 1)
+        # # self.assertEqual(data['data']['status'], "draft")
+        # # self.assertEqual(data['data']['videos'], "videolocation")
     def test_get_all_redflag(self):
         """This method tests whether after posting valid
         data, a particular can be returned"""

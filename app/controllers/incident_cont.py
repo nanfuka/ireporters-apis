@@ -2,6 +2,7 @@ from app.models.incident import Incident, incidents
 from flask import Flask, jsonify, request, json
 
 
+
 class Redflag:
 
     def create_redflag(self, *args):

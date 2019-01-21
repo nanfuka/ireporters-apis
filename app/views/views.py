@@ -4,15 +4,14 @@ from app.validators import Validators
 from app.controllers.incident_cont import Redflag
 from app.controllers.users_controllers import User
 from app.models.incident import Incident, incidents
-from flask_jwt_extended import create_access_token, JWTManager, jwt_required,\
-    get_jwt_identity
+import jwt, datetime
+
 
 
 app = Flask(__name__)
-jwt = JWTManager(app)
-app.config['JWT_SECRET_KEY'] = 'thisismysecret'
 redflag = Redflag()
 validators = Validators()
+users = User()
 
 
 @app.route('/')
@@ -55,12 +54,6 @@ def signup():
     if invalid_detail:
         return jsonify({"status": 400, 'error': invalid_detail}), 400
 
-    # error_message = validators.validate_user_details(firstname, lastname,
-    #                                                  email, username, password,
-    #                                                  phoneNumber, isAdmin,
-    #                                                  othernames)
-    # if error_message:
-    #     return jsonify({"status": 400, 'error': error_message}), 400
     elif invalid_detail:
         return jsonify({"status": 400, 'error': invalid_detail}), 400
     else:
@@ -73,12 +66,14 @@ def signup():
             data['username'],
             data['isAdmin'],
             data['password'])
-    token = create_access_token(username)
-
+   
+    token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
     return jsonify({
         "status": 201,
         "message": "Successfully signedup with ireporter",
-        "data": newuserinput, "access_token": token}), 201
+        "data": newuserinput, "access_token": token.decode('utf-8')}), 201
+
+
 
 
 @app.route('/api/v1/login', methods=['POST'])
@@ -89,10 +84,15 @@ def login():
     password = data.get('password')
     user = User()
     loggedin_user = user.login(username, password)
+    loggedin_admin = user.adminlogin()
 
     if loggedin_user:
-        token = create_access_token(username)
+        token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
         return jsonify(loggedin_user, {"access_token": token})
+        
+    elif loggedin_admin:
+        token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'holulop')
+        return jsonify(loggedin_admin, {"access_token": token})
     else:
         return jsonify(
             {"status": 404,
@@ -100,7 +100,7 @@ def login():
 
 
 @app.route('/api/v1/red-flags')
-# @jwt_required
+@users.customer_token
 def get_redflags():
     """ A user can retrieve all redflag records\
     only after including the bearer token in the header

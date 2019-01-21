@@ -88,11 +88,11 @@ def login():
 
     if loggedin_user:
         token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
-        return jsonify(loggedin_user, {"access_token": token})
+        return jsonify(loggedin_user, {"access_token": token.decode('utf-8')})
         
     elif loggedin_admin:
         token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'holulop')
-        return jsonify(loggedin_admin, {"access_token": token})
+        return jsonify(loggedin_admin, {"access_token": token.decode('utf-8')})
     else:
         return jsonify(
             {"status": 404,
@@ -100,7 +100,7 @@ def login():
 
 
 @app.route('/api/v1/red-flags')
-@users.customer_token
+@users.admin_token
 def get_redflags():
     """ A user can retrieve all redflag records\
     only after including the bearer token in the header
@@ -118,6 +118,7 @@ def get_sepecific_record(redflag_id):
 
 
 @app.route('/api/v1/red-flags', methods=['POST'])
+@users.customer_token
 def create_redflags():
     """A user can create a redflag by entering all the required data"""
     data = request.get_json()

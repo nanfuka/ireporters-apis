@@ -67,11 +67,11 @@ def signup():
             data['isAdmin'],
             data['password'])
    
-    token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
+    # token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
     return jsonify({
         "status": 201,
         "message": "Successfully signedup with ireporter",
-        "data": newuserinput, "access_token": token.decode('utf-8')}), 201
+        "data": newuserinput}), 201
 
 
 
@@ -84,15 +84,17 @@ def login():
     password = data.get('password')
     user = User()
     loggedin_user = user.login(username, password)
-    loggedin_admin = user.adminlogin()
+    loggedin_admin = user.adminlogin(username, password)
 
-    if loggedin_user:
+
+    if loggedin_admin:
+        token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'hodulop')
+        return jsonify(loggedin_admin, {"access_token": token.decode('utf-8')})
+    
+    elif loggedin_user:
         token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'amauser')
         return jsonify(loggedin_user, {"access_token": token.decode('utf-8')})
         
-    elif loggedin_admin:
-        token = jwt.encode({'username': data['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'holulop')
-        return jsonify(loggedin_admin, {"access_token": token.decode('utf-8')})
     else:
         return jsonify(
             {"status": 404,

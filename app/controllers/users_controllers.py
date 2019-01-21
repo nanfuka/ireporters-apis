@@ -36,16 +36,16 @@ class User():
     def login(self, username, password):
         """method for logging in the registered none admin-user"""
         for user in users:
-            if user['username'] == username and user['password'] == password:
+            if user['username'] == username and user['password'] == password and user['username'] != 'admin' and user['password'] != 'password':
                 return {"status": 201,
                         "message": "you have logged in successfully"}
+            return {"message":"enter the correct username and password"}
 
-    def adminlogin(self):
+    def adminlogin(self, username, password):
         """method for logging in the adminstrator"""
-        for user in users:
-            if user['username'] == 'admin' and user['password'] == 'ohpriz':
-                return {"status": 201,
-                        "message": "you have successfully logged in as the adminstrator"}
+        
+        if username == 'admin' and password == 'ohpriz':
+            return {"status": 201, "message": "you have successfully logged in as the adminstrator"}
 
 
     def check_repitition(self, username, email, password):
